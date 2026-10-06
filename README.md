@@ -5,6 +5,7 @@ An interactive, single-file periodic table web app.
 🔗 **Live demo:** https://dualwielder.github.io/periodic-table-comett/
 
 ![Screenshot](screenshot.png)
+![Screenshot](screenshot1.png)
 
 ## Features
 - All 118 elements with detailed info panels
