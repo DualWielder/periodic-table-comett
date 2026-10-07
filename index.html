@@ -1639,6 +1639,68 @@ html[data-anim="off"] .fav-filter:hover, html[data-anim="off"] .settings-btn:hov
 html[data-contrast="high"] .cmp-toggle[aria-checked="true"] .switch{background:var(--text); border-color:var(--text);}
 html[data-contrast="high"] .cmp-toggle[aria-checked="true"] .switch::after{background:var(--surface);}
 </style>
+<style id="pt-dark-gradient">
+/* ===== Dark theme: gradient page + gradient element boxes,  =====
+   Appended last so it wins the cascade. Screen only (print keeps its own clean palette). */
+@media screen{
+  /* page background: deep base with soft teal / indigo / rose light pools (on <html> so it always fills the viewport) */
+  html[data-theme="dark"]{
+    background-color:#0a0c10;
+    background-image:
+      radial-gradient(900px 540px at 6% -6%, rgba(94,234,212,.14), transparent 62%),
+      radial-gradient(820px 560px at 100% 2%, rgba(129,140,248,.16), transparent 60%),
+      radial-gradient(1000px 620px at 50% 112%, rgba(236,72,153,.09), transparent 60%),
+      linear-gradient(180deg,#10141b 0%,#0a0c10 100%);
+    background-repeat:no-repeat; background-attachment:fixed; background-size:cover;
+  }
+  html[data-theme="dark"] body{background:transparent;}
+  html[data-theme="dark"] .app-header{
+    background-color:color-mix(in srgb, var(--surface) 72%, transparent);
+    background-image:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+    border-bottom-color:rgba(255,255,255,.07);
+  }
+  html[data-theme="dark"] .legend{border-bottom-color:rgba(255,255,255,.05);}
+  /* controls get a soft top-lit gradient instead of a flat fill */
+  html[data-theme="dark"] .search-box, html[data-theme="dark"] .fav-filter, html[data-theme="dark"] .settings-btn,
+  html[data-theme="dark"] .legend button, html[data-theme="dark"] .jump-bar button{
+    background-image:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+  }
+
+  /* element boxes: per-category gradient (accent-lit top-left -> category tint -> deeper bottom-right) */
+  html[data-theme="dark"] .cat-alkali{--acc:var(--c-alkali); --cb:var(--c-alkali-bg);}
+  html[data-theme="dark"] .cat-alkaline{--acc:var(--c-alkaline); --cb:var(--c-alkaline-bg);}
+  html[data-theme="dark"] .cat-transition{--acc:var(--c-transition); --cb:var(--c-transition-bg);}
+  html[data-theme="dark"] .cat-post{--acc:var(--c-post); --cb:var(--c-post-bg);}
+  html[data-theme="dark"] .cat-metalloid{--acc:var(--c-metalloid); --cb:var(--c-metalloid-bg);}
+  html[data-theme="dark"] .cat-nonmetal{--acc:var(--c-nonmetal); --cb:var(--c-nonmetal-bg);}
+  html[data-theme="dark"] .cat-halogen{--acc:var(--c-halogen); --cb:var(--c-halogen-bg);}
+  html[data-theme="dark"] .cat-noble{--acc:var(--c-noble); --cb:var(--c-noble-bg);}
+  html[data-theme="dark"] .cat-lanth{--acc:var(--c-lanth); --cb:var(--c-lanth-bg);}
+  html[data-theme="dark"] .cat-actin{--acc:var(--c-actin); --cb:var(--c-actin-bg);}
+
+  html[data-theme="dark"]:not([data-contrast="high"]) .cell[class*="cat-"]{
+    background-color:var(--cb);
+    background-image:linear-gradient(150deg,
+      color-mix(in srgb, var(--cb) 76%, var(--acc)) 0%,
+      var(--cb) 50%,
+      color-mix(in srgb, var(--cb) 70%, #000) 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10), 0 2px 5px rgba(0,0,0,.38);
+  }
+  html[data-theme="dark"]:not([data-contrast="high"]) .cell .symbol{
+    color:color-mix(in srgb, var(--acc, var(--text)) 34%, #fff);
+    text-shadow:0 1px 6px rgba(0,0,0,.35);
+  }
+  html[data-theme="dark"]:not([data-contrast="high"]) .cell .num{opacity:.82;}
+  html[data-theme="dark"]:not([data-contrast="high"]) .cell .name{opacity:.92;}
+  html[data-theme="dark"]:not([data-contrast="high"]) .cell .mass{opacity:.78;}
+}
+@media screen and (hover:hover){
+  /* dark hover: a soft glow in the element's own category colour */
+  html[data-theme="dark"]:not([data-contrast="high"]) .cell[class*="cat-"]:hover:not(.dimmed):not(.match):not(.is-selected){
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 10px 26px color-mix(in srgb, var(--acc) 38%, rgba(0,0,0,.5));
+  }
+}
+</style>
 </head>
 <body>
 
